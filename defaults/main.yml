@@ -1,0 +1,4 @@
+---
+nodejs_branch: 5.x
+nodejs_version: "5.0"
+nodejs_global_packages: []
