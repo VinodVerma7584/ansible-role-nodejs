@@ -40,7 +40,7 @@
     name: "nodejs={{ nodejs_version }}-*"
     state: installed
     update_cache: yes
-    cache_valid_time: "{{ apt_cache_valid_time }}"
+    cache_valid_time: "{{ apt_cache_valid_time | default(3600) }}"
   when: not nodejs_version | search('\*')
 
 - name: Install Node.js with wildcard
@@ -48,7 +48,7 @@
     name: "nodejs={{ nodejs_version }}"
     state: installed
     update_cache: yes
-    cache_valid_time: "{{ apt_cache_valid_time }}"
+    cache_valid_time: "{{ apt_cache_valid_time | default(3600) }}"
   when: nodejs_version | search('\*')
 
 - name: Install nodejs global packages
