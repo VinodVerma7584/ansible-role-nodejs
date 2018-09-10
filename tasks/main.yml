@@ -38,7 +38,7 @@
 - name: Install Node.js without wildcard
   apt:
     name: "nodejs={{ nodejs_version }}-*"
-    state: installed
+    state: present
     update_cache: yes
     cache_valid_time: "{{ apt_cache_valid_time | default(3600) }}"
   when: not nodejs_version | search('\*')
@@ -46,7 +46,7 @@
 - name: Install Node.js with wildcard
   apt:
     name: "nodejs={{ nodejs_version }}"
-    state: installed
+    state: present
     update_cache: yes
     cache_valid_time: "{{ apt_cache_valid_time | default(3600) }}"
   when: nodejs_version | search('\*')
