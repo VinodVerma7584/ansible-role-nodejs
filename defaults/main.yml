@@ -1,4 +1,4 @@
 ---
 nodejs_branch: 8.x
-nodejs_version: "8.11.*"
+nodejs_version: "8.*"
 nodejs_global_packages: []
