@@ -19,3 +19,7 @@ nodejs_version: "8.*"
 nodejs_global_packages: []
 
 ```
+
+# Development
+
+Please check [development guide](DEVELOPMENT.md) for details about developing and testing this role.

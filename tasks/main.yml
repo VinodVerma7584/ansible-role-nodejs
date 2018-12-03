@@ -7,7 +7,7 @@
 - name: Install HTTPS transport for APT
   apt:
     pkg: apt-transport-https
-    state: installed
+    state: present
   when: not apt_https_transport.stat.exists
 
 - name: Import the NodeSource GPG key into apt - keep to revert, current hotfix is a bit dirty
@@ -22,13 +22,13 @@
   apt_repository:
     repo: 'deb https://deb.nodesource.com/node_{{ nodejs_branch }} {{ ansible_distribution_release }} main'
     state: present
-    update_cache: yes
+    update_cache: true
 
 - name: Add NodeSource deb-src repository
   apt_repository:
     repo: 'deb-src https://deb.nodesource.com/node_{{ nodejs_branch }} {{ ansible_distribution_release }} main'
     state: present
-    update_cache: yes
+    update_cache: true
 
 - name: Add NodeSource repository preferences
   template:
@@ -39,20 +39,20 @@
   apt:
     name: "nodejs={{ nodejs_version }}-*"
     state: present
-    update_cache: yes
+    update_cache: true
     cache_valid_time: "{{ apt_cache_valid_time | default(3600) }}"
-  when: not nodejs_version | search('\*')
+  when: not nodejs_version is search('\*')
 
 - name: Install Node.js with wildcard
   apt:
     name: "nodejs={{ nodejs_version }}"
     state: present
-    update_cache: yes
+    update_cache: true
     cache_valid_time: "{{ apt_cache_valid_time | default(3600) }}"
-  when: nodejs_version | search('\*')
+  when: nodejs_version is search('\*')
 
 - name: Install nodejs global packages
   npm:
     name: "{{ item }}"
-    global: yes
+    global: true
   with_items: "{{ nodejs_global_packages }}"
