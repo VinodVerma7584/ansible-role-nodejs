@@ -10,23 +10,20 @@
     state: present
   when: not apt_https_transport.stat.exists
 
-- name: Import the NodeSource GPG key into apt - keep to revert, current hotfix is a bit dirty
+- name: Import the NodeSource GPG key into apt
   apt_key:
     url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
     state: present
 
-#- name: Import the NodeSource GPG key into apt
-#  shell: "curl https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -"
-
 - name: Add NodeSource deb repository
   apt_repository:
-    repo: 'deb https://deb.nodesource.com/node_{{ nodejs_branch }} {{ ansible_distribution_release }} main'
+    repo: "{{ nodejs_deb_repo }}"
     state: present
     update_cache: true
 
 - name: Add NodeSource deb-src repository
   apt_repository:
-    repo: 'deb-src https://deb.nodesource.com/node_{{ nodejs_branch }} {{ ansible_distribution_release }} main'
+    repo: "{{ nodejs_deb_src_repo }}"
     state: present
     update_cache: true
 
