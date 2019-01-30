@@ -1,6 +1,6 @@
 # nodejs
 
-[![Build Status](https://travis-ci.com/iroquoisorg/ansible-role-nodejs.svg?branch=master)](https://travis-ci.com/iroquoisorg/ansible-role-memcached)
+[![Build Status](https://travis-ci.com/iroquoisorg/ansible-role-nodejs.svg?branch=master)](https://travis-ci.com/iroquoisorg/ansible-role-nodejs)
 
 Ansible role for nodejs
 
